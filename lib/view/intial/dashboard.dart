@@ -31,7 +31,7 @@ class Dashboard extends StatelessWidget {
       MyBookings(),
       PostAds(),
     ];
-    return GetBuilder<BottomNavController>(builder: (controller) {
+    return GetBuilder<DashboardController>(builder: (controller) {
       return WillPopScope(
         onWillPop: ()  {
           return alertDialog(context: context,title: 'Are you sure to exit?', onTapYes: ()=>SystemNavigator.pop(), onTapNo: ()=>Get.back());

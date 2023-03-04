@@ -1,5 +1,6 @@
 import 'package:bachelor_heaven_landlord/constants/constants.dart';
 import 'package:bachelor_heaven_landlord/controller/dashboard/post_controller.dart';
+import 'package:bachelor_heaven_landlord/controller/intial/dashboard_controller.dart';
 import 'package:bachelor_heaven_landlord/widgets/custom_Button.dart';
 import 'package:bachelor_heaven_landlord/widgets/custom_textField.dart';
 import 'package:bachelor_heaven_landlord/widgets/textStyles.dart';
@@ -14,6 +15,7 @@ class PostAds extends StatelessWidget {
   TextEditingController _locationController = TextEditingController();
   TextEditingController _priceController = TextEditingController();
   TextEditingController _descriptionController = TextEditingController();
+  DashboardController _controller = Get.find();
 
   final List<String> items = ['Seat', 'Flat', 'Room'];
 

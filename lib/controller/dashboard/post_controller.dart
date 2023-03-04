@@ -1,4 +1,5 @@
 import 'package:bachelor_heaven_landlord/constants/constants.dart';
+import 'package:bachelor_heaven_landlord/controller/intial/dashboard_controller.dart';
 import 'package:bachelor_heaven_landlord/model/post_add_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,6 +13,7 @@ import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 class PostController extends GetxController {
+  DashboardController _controller = Get.find();
   String category = 'Seat';
   RxString currentTime =
       DateFormat.yMMMMd('en_US').add_jms().format(DateTime.now()).obs;
@@ -117,7 +119,8 @@ class PostController extends GetxController {
               .set(post.toJson())
               .then(
                   (value) => Fluttertoast.showToast(msg: 'Successfully added!'))
-              .then((value) => Get.offAllNamed('/nav_panel')));
+              .then((value) => _controller.changeTabIndex(0))
+              .then((value) => Get.offAllNamed('/dashboard')));
     } else {
       Fluttertoast.showToast(msg: 'Select at least one image');
     }
@@ -127,8 +130,7 @@ class PostController extends GetxController {
     final CollectionReference ref =
         await FirebaseFirestore.instance.collection('allAdds');
 
-    QuerySnapshot snapshot =
-        await ref.where('uid', isEqualTo: uid).get();
+    QuerySnapshot snapshot = await ref.where('uid', isEqualTo: uid).get();
 
     snapshot.docs.forEach((element) {
       element.reference.delete();

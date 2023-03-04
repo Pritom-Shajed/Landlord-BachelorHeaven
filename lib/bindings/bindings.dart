@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class InitialBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(BottomNavController());
+    Get.put(DashboardController());
     Get.put(MyAdsController());
     Get.put(PostController());
   }
