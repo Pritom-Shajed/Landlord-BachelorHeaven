@@ -23,7 +23,7 @@ class AdDetails extends StatelessWidget {
       body: SafeArea(
         child: StreamBuilder(
             stream: _firestore
-                .collection('allAdds')
+                .collection('Ads-All')
                 .where('uid', isEqualTo: uid)
                 .snapshots(),
             builder: (context, snapshot) {

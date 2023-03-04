@@ -95,8 +95,8 @@ class MyAds extends StatelessWidget {
           Expanded(
             child: StreamBuilder(
               stream: _firestore
-                  .collection('individualAdds')
-                  .doc('user_${_currentUser!.uid}')
+                  .collection('Ads-Individual')
+                  .doc('landlord_${_currentUser!.uid}')
                   .collection(controller.selected == Selected.flat ? 'Flat':controller.selected == Selected.room ?'Room':'Seat')
                   .snapshots(),
               builder: (context, snapshot) {

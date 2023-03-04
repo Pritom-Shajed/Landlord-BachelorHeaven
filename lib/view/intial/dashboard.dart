@@ -1,10 +1,3 @@
-// import 'package:bachelor_heaven/controller/intial/bottom_nav_controller.dart';
-// import 'package:bachelor_heaven/view/landlord/profile/profile_screen.dart';
-// import 'package:bachelor_heaven/view/dashboard/category_screen.dart';
-// import 'package:bachelor_heaven/view/dashboard/home_screen.dart';
-// import 'package:bachelor_heaven/view/dashboard/landlords_screen.dart';
-// import 'package:bachelor_heaven/view/landlord/profile/profile(unused).dart';
-// import 'package:bachelor_heaven/widgets/common/alert_dialog.dart';
 import 'package:bachelor_heaven_landlord/controller/intial/dashboard_controller.dart';
 import 'package:bachelor_heaven_landlord/view/dashboard/myAds.dart';
 import 'package:bachelor_heaven_landlord/view/dashboard/myBooking.dart';
@@ -13,7 +6,6 @@ import 'package:bachelor_heaven_landlord/view/dashboard/postAds.dart';
 import 'package:bachelor_heaven_landlord/widgets/alert_dialog.dart';
 import 'package:bachelor_heaven_landlord/widgets/drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -33,8 +25,13 @@ class Dashboard extends StatelessWidget {
     ];
     return GetBuilder<DashboardController>(builder: (controller) {
       return WillPopScope(
-        onWillPop: ()  {
-          return alertDialog(context: context,title: 'Are you sure to exit?', onTapYes: ()=>SystemNavigator.pop(), onTapNo: ()=>Get.back());
+        onWillPop: () async {
+          if(controller.tabIndex == 0){
+            return alertDialog(context: context,title: 'Are you sure to exit?', onTapYes: ()=>SystemNavigator.pop(), onTapNo: ()=>Get.back());
+          }  else {
+            controller.changeTabIndex(0);
+            return await false;
+          }
         },
         child: Scaffold(
           drawer: DrawerWidget(context: context,text: _currentUser!.displayName!,

@@ -10,11 +10,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AuthController extends GetxController {
-
   File? image;
   RxBool obscureText = true.obs;
-
-
 
   pickImage(ImageSource src) async {
     XFile? xfile = await ImagePicker().pickImage(source: src);
@@ -24,7 +21,7 @@ class AuthController extends GetxController {
     }
   }
 
-  changeObscureText(bool value){
+  changeObscureText(bool value) {
     obscureText.value = value;
   }
 
@@ -62,7 +59,8 @@ class AuthController extends GetxController {
         Reference ref = FirebaseStorage.instance
             .ref()
             .child('profile-pic')
-            .child('user_${credential.user!.uid}');
+            .child('landlords')
+            .child('landlord_${credential.user!.uid}');
 
         TaskSnapshot taskSnapshot = await ref.putFile(image!);
 
@@ -81,7 +79,7 @@ class AuthController extends GetxController {
           phoneNumber: phoneNumber,
         );
         await FirebaseFirestore.instance
-            .collection('users')
+            .collection('landlords')
             .doc(credential.user!.uid)
             .set(user.toJson())
             .then((value) => Get.snackbar('Successfully Registered',
@@ -97,8 +95,7 @@ class AuthController extends GetxController {
       }
     } catch (e) {
       Get.snackbar('Error Occured', 'Please try again',
-          snackPosition: SnackPosition.BOTTOM,
-          duration: Duration(seconds: 2));
+          snackPosition: SnackPosition.BOTTOM, duration: Duration(seconds: 2));
       print(e);
     }
   }
@@ -170,7 +167,7 @@ class AuthController extends GetxController {
           .signInWithEmailAndPassword(email: email, password: pass)
           .then((value) => Get.snackbar(
               'Logged In', 'Welcome to Bachelor Heaven.',
-          snackPosition: SnackPosition.BOTTOM,
+              snackPosition: SnackPosition.BOTTOM,
               duration: Duration(seconds: 2)))
           .then((value) => Get.offAllNamed('/dashboard'));
     } on FirebaseAuthException catch (e) {
@@ -196,7 +193,7 @@ class AuthController extends GetxController {
     await FirebaseAuth.instance
         .signOut()
         .then((value) => Get.snackbar('Logged out', 'Hope to see you soon.',
-        snackPosition: SnackPosition.BOTTOM,
+            snackPosition: SnackPosition.BOTTOM,
             duration: Duration(seconds: 2)))
         .then((value) => Get.offAllNamed('/login'));
   }

@@ -11,7 +11,7 @@ class ProfileController extends GetxController {
 
   updateUserDetails(UserModel user) async {
     await _firestore
-        .collection('users')
+        .collection('landlords')
         .doc(_currentUser!.uid)
         .update(user.toJson())
         .then((value) => Get.back())

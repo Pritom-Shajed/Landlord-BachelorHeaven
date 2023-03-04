@@ -89,8 +89,8 @@ class PostController extends GetxController {
           });
       Reference ref = FirebaseStorage.instance
           .ref()
-          .child('adds')
-          .child('user_${_currentUser!.uid}')
+          .child('Ads-All')
+          .child('landlord_${_currentUser!.uid}')
           .child(category)
           .child('${currentTime.value}');
 
@@ -108,13 +108,13 @@ class PostController extends GetxController {
           postDate: currentDate);
 
       await FirebaseFirestore.instance
-          .collection('individualAdds')
-          .doc('user_${_currentUser!.uid}')
+          .collection('Ads-Individual')
+          .doc('landlord_${_currentUser!.uid}')
           .collection(category)
           .doc('${currentTime.value}')
           .set(post.toJson())
           .then((value) => FirebaseFirestore.instance
-              .collection('allAdds')
+              .collection('Ads-All')
               .doc('${currentTime.value}')
               .set(post.toJson())
               .then(
@@ -128,7 +128,7 @@ class PostController extends GetxController {
 
   deletePost({required String uid, required String categoryName}) async {
     final CollectionReference ref =
-        await FirebaseFirestore.instance.collection('allAdds');
+        await FirebaseFirestore.instance.collection('Ads-All');
 
     QuerySnapshot snapshot = await ref.where('uid', isEqualTo: uid).get();
 
@@ -142,8 +142,8 @@ class PostController extends GetxController {
   deletePersonalPost(
       {required String categoryName, required String uid}) async {
     final CollectionReference ref = await FirebaseFirestore.instance
-        .collection('individualAdds')
-        .doc('user_${_currentUser!.uid}')
+        .collection('Ads-Individual')
+        .doc('landlord_${_currentUser!.uid}')
         .collection(categoryName);
     QuerySnapshot snapshot = await ref.where('uid', isEqualTo: uid).get();
 

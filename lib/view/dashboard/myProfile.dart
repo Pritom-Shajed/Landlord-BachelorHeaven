@@ -23,7 +23,7 @@ class MyProfile extends StatelessWidget {
       ),
         body: StreamBuilder(
       stream: FirebaseFirestore.instance
-          .collection('users')
+          .collection('landlords')
           .doc(_currentUser!.uid)
           .snapshots(),
       builder: (context, snapshot) {
