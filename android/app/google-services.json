@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "547074217296",
+    "firebase_url": "https://bachelor-heaven-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "bachelor-heaven",
+    "storage_bucket": "bachelor-heaven.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547074217296:android:287587fc28f25836bac855",
+        "android_client_info": {
+          "package_name": "com.example.bachelor_heaven"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547074217296-eb8l7tgmlbcufl173nbg9i87h6kdralh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bachelor_heaven",
+            "certificate_hash": "c9f799c05789d5564a9c1f994887f723cda73dce"
+          }
+        },
+        {
+          "client_id": "547074217296-cguejuag721f6sgbo241k043q0ho58op.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbrTMDL0uu1jTN1wo12TLFGeRmXQClJs0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547074217296-cguejuag721f6sgbo241k043q0ho58op.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547074217296:android:d6417dfa1546efc1bac855",
+        "android_client_info": {
+          "package_name": "com.landlord.bachelor_heaven_landlord"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547074217296-260bmn2vuh63sufdog09ncq7q44hpms8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.landlord.bachelor_heaven_landlord",
+            "certificate_hash": "c9f799c05789d5564a9c1f994887f723cda73dce"
+          }
+        },
+        {
+          "client_id": "547074217296-cguejuag721f6sgbo241k043q0ho58op.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbrTMDL0uu1jTN1wo12TLFGeRmXQClJs0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547074217296-cguejuag721f6sgbo241k043q0ho58op.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

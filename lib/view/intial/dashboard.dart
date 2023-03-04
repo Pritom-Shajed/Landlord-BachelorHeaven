@@ -1,0 +1,98 @@
+// import 'package:bachelor_heaven/controller/intial/bottom_nav_controller.dart';
+// import 'package:bachelor_heaven/view/landlord/profile/profile_screen.dart';
+// import 'package:bachelor_heaven/view/dashboard/category_screen.dart';
+// import 'package:bachelor_heaven/view/dashboard/home_screen.dart';
+// import 'package:bachelor_heaven/view/dashboard/landlords_screen.dart';
+// import 'package:bachelor_heaven/view/landlord/profile/profile(unused).dart';
+// import 'package:bachelor_heaven/widgets/common/alert_dialog.dart';
+import 'package:bachelor_heaven_landlord/controller/intial/dashboard_controller.dart';
+import 'package:bachelor_heaven_landlord/view/dashboard/myAds.dart';
+import 'package:bachelor_heaven_landlord/view/dashboard/myBooking.dart';
+import 'package:bachelor_heaven_landlord/view/dashboard/myProfile.dart';
+import 'package:bachelor_heaven_landlord/view/dashboard/postAds.dart';
+import 'package:bachelor_heaven_landlord/widgets/alert_dialog.dart';
+import 'package:bachelor_heaven_landlord/widgets/drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+
+class Dashboard extends StatelessWidget {
+  Dashboard({Key? key}) : super(key: key);
+
+  User? _currentUser = FirebaseAuth.instance.currentUser;
+
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> _pages = [
+      MyAds(),
+      MyBookings(),
+      PostAds(),
+    ];
+    return GetBuilder<BottomNavController>(builder: (controller) {
+      return WillPopScope(
+        onWillPop: ()  {
+          return alertDialog(context: context,title: 'Are you sure to exit?', onTapYes: ()=>SystemNavigator.pop(), onTapNo: ()=>Get.back());
+        },
+        child: Scaffold(
+          drawer: DrawerWidget(context: context,text: _currentUser!.displayName!,
+              image: _currentUser!.photoURL!),
+          appBar: AppBar(
+            elevation: 0,
+            actions: [
+              IconButton(
+                  onPressed: () =>Get.toNamed('/myProfile'),
+                  icon: Icon(Icons.account_circle))
+            ],
+          ),
+          bottomNavigationBar: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 20,
+                  color: Colors.black.withOpacity(.1),
+                )
+              ],
+            ),
+            child: SafeArea(
+              child: Padding(
+                padding:
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+                child: GNav(
+                  rippleColor: Colors.grey[300]!,
+                  hoverColor: Colors.grey[100]!,
+                  activeColor: Colors.black,
+                  iconSize: 24,
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  duration: Duration(milliseconds: 400),
+                  tabBackgroundColor: Colors.grey[100]!,
+                  color: Colors.black,
+                  tabs: [
+                    GButton(
+                      icon: Icons.home,
+                      text: 'My Ads',
+                    ),
+                    GButton(
+                      icon: Icons.book,
+                      text: 'Bookings',
+                    ),
+                    GButton(
+                      icon: Icons.post_add_outlined,
+                      text: 'Post Ads',
+                    ),
+                  ],
+                  selectedIndex: controller.tabIndex,
+                  onTabChange: controller.changeTabIndex,
+                ),
+              ),
+            ),
+          ),
+          body: _pages[controller.tabIndex],
+        ),
+      );
+    });
+  }
+}
