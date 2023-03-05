@@ -15,8 +15,6 @@ import 'package:uuid/uuid.dart';
 class PostController extends GetxController {
   DashboardController _controller = Get.find();
   String category = 'Seat';
-  RxString currentTime =
-      DateFormat.yMMMMd('en_US').add_jms().format(DateTime.now()).obs;
   File? addImage;
   final _currentUser = FirebaseAuth.instance.currentUser;
 
@@ -24,6 +22,7 @@ class PostController extends GetxController {
     category = value!;
     update();
   }
+
 
   pickAddImage(ImageSource src) async {
     XFile? xfile = await ImagePicker().pickImage(source: src);
@@ -76,6 +75,7 @@ class PostController extends GetxController {
       required String location,
       required String price,
       required String description,
+        required String time,
       required BuildContext context}) async {
     if (addImage != null) {
       showDialog(
@@ -92,7 +92,7 @@ class PostController extends GetxController {
           .child('Ads-All')
           .child('landlord_${_currentUser!.uid}')
           .child(category)
-          .child('${currentTime.value}');
+          .child(time);
 
       TaskSnapshot task = await ref.putFile(addImage!);
       String downloadUrl = await task.ref.getDownloadURL();
@@ -111,11 +111,11 @@ class PostController extends GetxController {
           .collection('Ads-Individual')
           .doc('landlord_${_currentUser!.uid}')
           .collection(category)
-          .doc('${currentTime.value}')
+          .doc(time)
           .set(post.toJson())
           .then((value) => FirebaseFirestore.instance
               .collection('Ads-All')
-              .doc('${currentTime.value}')
+              .doc(time)
               .set(post.toJson())
               .then(
                   (value) => Fluttertoast.showToast(msg: 'Successfully added!'))

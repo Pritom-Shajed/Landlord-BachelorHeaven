@@ -7,6 +7,7 @@ import 'package:bachelor_heaven_landlord/widgets/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class PostAds extends StatelessWidget {
   PostAds({super.key});
@@ -15,7 +16,7 @@ class PostAds extends StatelessWidget {
   TextEditingController _locationController = TextEditingController();
   TextEditingController _priceController = TextEditingController();
   TextEditingController _descriptionController = TextEditingController();
-  DashboardController _controller = Get.find();
+  String _currentTime = DateFormat.yMMMMd('en_US').add_jms().format(DateTime.now());
 
   final List<String> items = ['Seat', 'Flat', 'Room'];
 
@@ -135,6 +136,7 @@ class PostAds extends StatelessWidget {
                           icon: Icons.description),
                       verticalSpace,
                       customButton(
+
                           text: 'ADD',
                           onTap: () {
                             if (_locationController.text.isEmpty) {
@@ -152,6 +154,7 @@ class PostAds extends StatelessWidget {
                             } else {
                               controller.addPost(
                                   context: context,
+                                  time: _currentTime,
                                   title: _titleController.text.trim(),
                                   category: controller.category,
                                   description:
