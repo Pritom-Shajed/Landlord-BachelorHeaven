@@ -75,6 +75,7 @@ class PostAds extends StatelessWidget {
                           hintText: 'Location',
                           icon: Icons.location_city),
                       customTextField(
+                        inputType: TextInputType.number,
                           controller: _priceController,
                           hintText: 'Price',
                           icon: Icons.price_change),
