@@ -4,6 +4,7 @@ import 'package:bachelor_heaven_landlord/controller/intial/dashboard_controller.
 import 'package:bachelor_heaven_landlord/widgets/custom_Button.dart';
 import 'package:bachelor_heaven_landlord/widgets/custom_textField.dart';
 import 'package:bachelor_heaven_landlord/widgets/textStyles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,7 @@ class PostAds extends StatelessWidget {
   TextEditingController _priceController = TextEditingController();
   TextEditingController _descriptionController = TextEditingController();
   String _currentTime = DateFormat.yMMMMd('en_US').add_jms().format(DateTime.now());
+  User? _currentUser = FirebaseAuth.instance.currentUser;
 
   final List<String> items = ['Seat', 'Flat', 'Room'];
 
@@ -155,6 +157,7 @@ class PostAds extends StatelessWidget {
                             } else {
                               controller.addPost(
                                   context: context,
+                                  adOwnerUid: _currentUser!.uid,
                                   time: _currentTime,
                                   title: _titleController.text.trim(),
                                   category: controller.category,

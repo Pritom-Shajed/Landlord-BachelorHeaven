@@ -70,7 +70,8 @@ class PostController extends GetxController {
   }
 
   addPost(
-      {required String title,
+      {required String adOwnerUid,
+        required String title,
       required String category,
       required String location,
       required String price,
@@ -98,6 +99,7 @@ class PostController extends GetxController {
       String downloadUrl = await task.ref.getDownloadURL();
 
       PostModel post = PostModel(
+          adOwnerUid: adOwnerUid,
           uid: Uuid().v1(),
           title: title,
           location: location,

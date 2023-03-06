@@ -7,6 +7,7 @@ String currentDate = DateFormat.yMMMd().format(DateTime.now());
 //Colors
 const Color bgColor = Color(0xff363637);
 const Color greenColor = Color(0xff107869);
+const Color indigoColor = Colors.indigo;
 const Color blackColor = Colors.black;
 const Color blueColor = Colors.blue;
 const Color whiteColor = Colors.white;
@@ -17,6 +18,9 @@ Color lightGreyColor = Colors.grey.shade300;
 
 //Vertical Space
 const verticalSpace = SizedBox(
+  height: 15,
+);
+const verticalSpaceSmall = SizedBox(
   height: 15,
 );
 

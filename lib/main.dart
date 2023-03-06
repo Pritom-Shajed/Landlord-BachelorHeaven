@@ -1,4 +1,5 @@
 import 'package:bachelor_heaven_landlord/bindings/bindings.dart';
+import 'package:bachelor_heaven_landlord/constants/constants.dart';
 import 'package:bachelor_heaven_landlord/controller/auth/auth_controller.dart';
 import 'package:bachelor_heaven_landlord/view/auth/login.dart';
 import 'package:bachelor_heaven_landlord/view/auth/registration.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Bachelor Heaven Landlord',
       theme: ThemeData(
         useMaterial3: true,
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey).copyWith(background: whiteColor),
         primarySwatch: Colors.blue,
       ),
       getPages: [
