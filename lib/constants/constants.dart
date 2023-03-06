@@ -28,4 +28,6 @@ const horizontalSpace = SizedBox(
   width: 10,
 );
 
+const LoadingIndicatorWhite = CircularProgressIndicator(color: whiteColor,);
+
 enum Selected { flat, room, seat }

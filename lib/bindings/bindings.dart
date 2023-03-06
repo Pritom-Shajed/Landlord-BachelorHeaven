@@ -1,4 +1,5 @@
 
+import 'package:bachelor_heaven_landlord/controller/booking/booking_controller.dart';
 import 'package:bachelor_heaven_landlord/controller/dashboard/category_controller.dart';
 import 'package:bachelor_heaven_landlord/controller/dashboard/post_controller.dart';
 import 'package:bachelor_heaven_landlord/controller/intial/dashboard_controller.dart';
@@ -10,6 +11,7 @@ class InitialBinding extends Bindings {
     Get.put(DashboardController());
     Get.put(MyAdsController());
     Get.put(PostController());
+    Get.put(ConfirmBookingController());
   }
 }
 //
