@@ -179,7 +179,7 @@ class MyBookings extends StatelessWidget {
                                                       color: blackColor),
                                                 ),
                                                 TextSpan(
-                                                  text: bookings['checkIn'],
+                                                  text: bookings['checkOut'],
                                                   style: poppinsTextStyle(
                                                       color: blackColor),
                                                 ),
@@ -311,7 +311,7 @@ class MyBookings extends StatelessWidget {
                                                       color: blackColor),
                                                 ),
                                                 TextSpan(
-                                                  text: bookings['checkIn'],
+                                                  text: bookings['checkOut'],
                                                   style: poppinsTextStyle(
                                                       color: blackColor),
                                                 ),
@@ -365,16 +365,11 @@ class MyBookings extends StatelessWidget {
                                                     'Confirmed'
                                                 ? Container()
                                                 : customButton(
-                                                    color: bgColor,
-                                                    text: bookings[
-                                                                'cancelled'] ==
-                                                            'No'
-                                                        ? 'Cancel'
-                                                        : 'Requested to cancel',
+                                                    color: bookings['cancelled'] == 'No' ? bgColor:deepBrown,
+                                                    text: bookings['cancelled'] == 'No' ? 'Cancel' : 'Requested to cancel',
                                                     onTap: () => alertDialog(
                                                         context: context,
-                                                        title:
-                                                            'Cancel booking?',
+                                                        title: 'Cancel booking?',
                                                         onTapYes: () =>
                                                             controller
                                                                 .cancelBooking(

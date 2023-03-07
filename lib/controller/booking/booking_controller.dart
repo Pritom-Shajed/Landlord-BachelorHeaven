@@ -72,8 +72,6 @@ class BookingController extends GetxController {
         builder: (context) {
           return Center(child: LoadingIndicatorWhite);
         });
-    CancelBookingModel cancelBookingModel = CancelBookingModel(
-        cancelled: cancelled);
 
     QuerySnapshot snapshot = await FirebaseFirestore.instance
         .collection('Bookings')
@@ -95,7 +93,7 @@ class BookingController extends GetxController {
     await
     FirebaseFirestore.instance.collection('CancelledBookings-Landlords').doc(
         time).set(cancelBookingModelIndividual.toJson()).then((value) =>
-        FirebaseFirestore.instance.collection('CancelledBookings-User').doc(
+        FirebaseFirestore.instance.collection('CancelledBookings-Users').doc(
             time).set(cancelBookingModelIndividual.toJson())).then((value) =>
         snapshot.docs.forEach((element) {
           element.reference.delete();
