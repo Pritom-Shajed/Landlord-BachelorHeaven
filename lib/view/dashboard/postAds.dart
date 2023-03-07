@@ -161,6 +161,7 @@ class PostAds extends StatelessWidget {
                             } else {
                               controller.addPost(
                                   context: context,
+                                  currentUserUid: _currentUser!.uid,
                                   adOwnerUid: _currentUser!.uid,
                                   adOwnerPhone: '${userData.docs.single['phoneNumber']}',
                                   time: _currentTime,

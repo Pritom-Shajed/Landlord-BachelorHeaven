@@ -16,7 +16,7 @@ class PostController extends GetxController {
   DashboardController _controller = Get.find();
   String category = 'Seat';
   File? addImage;
-  final _currentUser = FirebaseAuth.instance.currentUser;
+  User? _currentUser = FirebaseAuth.instance.currentUser;
 
   void pickCategory(String? value) {
     category = value!;
@@ -72,6 +72,7 @@ class PostController extends GetxController {
   addPost(
       {required String adOwnerUid,
         required String adOwnerPhone,
+        required String currentUserUid,
         required String title,
       required String category,
       required String location,
@@ -92,7 +93,7 @@ class PostController extends GetxController {
       Reference ref = FirebaseStorage.instance
           .ref()
           .child('Ads-All')
-          .child('landlord_${_currentUser!.uid}')
+          .child('landlord_$currentUserUid')
           .child(category)
           .child(time);
 
@@ -113,7 +114,7 @@ class PostController extends GetxController {
 
       await FirebaseFirestore.instance
           .collection('Ads-Individual')
-          .doc('landlord_${_currentUser!.uid}')
+          .doc('landlord_$currentUserUid')
           .collection(category)
           .doc(time)
           .set(post.toJson())
