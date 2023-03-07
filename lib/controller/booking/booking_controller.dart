@@ -25,8 +25,8 @@ class BookingController extends GetxController {
   confirmBooking({
     required BuildContext context,
     required String bookingStatus,
-    required String apartmentUid,
-    required String adBookedByUid,
+    required String bookingUid,
+    required String adBookedByUid, required apartmentUid,
   }) async {
     showDialog(
         context: context,
@@ -39,7 +39,7 @@ class BookingController extends GetxController {
     final CollectionReference ref =
     await FirebaseFirestore.instance.collection('Bookings');
     QuerySnapshot snapshot = await ref
-        .where('apartmentUid', isEqualTo: apartmentUid)
+        .where('bookingUid', isEqualTo: bookingUid)
         .where('adBookedByUid', isEqualTo: adBookedByUid)
         .get();
 
@@ -54,6 +54,7 @@ class BookingController extends GetxController {
   cancelBooking({
     required String time,
     required BuildContext context,
+    required String bookingUid,
     required String cancelled,
     required String apartmentUid,
     required String adBookedByUid,
@@ -73,14 +74,15 @@ class BookingController extends GetxController {
         });
     CancelBookingModel cancelBookingModel = CancelBookingModel(
         cancelled: cancelled);
+
     QuerySnapshot snapshot = await FirebaseFirestore.instance
         .collection('Bookings')
-        .where('apartmentUid', isEqualTo: apartmentUid)
-        .where('adBookedByUid', isEqualTo: adBookedByUid)
+        .where('bookingUid', isEqualTo: bookingUid)
         .get();
 
     CancelBookingModelIndividual cancelBookingModelIndividual = CancelBookingModelIndividual(
         bookingStatus: bookingStatus,
+        bookingUid: bookingUid,
         adOwnerUid: adOwnerUid,
         adBookedByUid: adBookedByUid,
         checkIn: checkIn,

@@ -28,6 +28,7 @@ class CancelBookingModel {
 
 class CancelBookingModelIndividual {
   String bookingStatus;
+  String bookingUid;
   String adOwnerUid;
   String checkIn;
   String checkOut;
@@ -39,6 +40,7 @@ class CancelBookingModelIndividual {
 
   CancelBookingModelIndividual({
     required this.bookingStatus,
+    required this.bookingUid,
     required this.adOwnerUid,
     required this.adBookedByUid,
     required this.checkIn,

@@ -343,6 +343,7 @@ class MyBookings extends StatelessWidget {
                                                                       .confirmBooking(
                                                                     context:
                                                                         context,
+                                                                    bookingUid: bookings['bookingUid'],
                                                                     adBookedByUid:
                                                                         bookings[
                                                                             'adBookedByUid'],
@@ -379,6 +380,7 @@ class MyBookings extends StatelessWidget {
                                                                 .cancelBooking(
                                                               context: context,
                                                               cancelled: 'Yes',
+                                                              bookingUid: bookings['bookingUid'],
                                                               adBookedByUid:
                                                                   bookings[
                                                                       'adBookedByUid'],
