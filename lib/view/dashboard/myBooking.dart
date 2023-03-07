@@ -109,35 +109,68 @@ class MyBookings extends StatelessWidget {
                             ),
                             Expanded(
                               flex: 2,
-                              child:
-                              bookings['bookingStatus']== 'Pending' ? Column(children: [
-                               customButton(
-                                    color: indigoColor,
-                                    text: 'Confirm',
-                                    onTap: () => alertDialog(
-                                        context: context,
-                                        title: 'Confirm booking?',
-                                        onTapYes: () {
-                                          _controller.ConfirmBooking(
-                                            context: context,
-                                            adBookedByUid: bookings['adBookedByUid'],
-                                            bookingStatus: 'Confirmed',
-                                            apartmentUid:
-                                                bookings['apartmentUid'],
-                                          );
-                                        },
-                                        onTapNo: () => Get.back())),
-                                verticalSpace,
-                                customButton(
-                                    color: bgColor,
-                                    text: 'Cancel',
-                                    onTap: () => alertDialog(
-                                        context: context,
-                                        title: 'Cancel booking?',
-                                        onTapYes: () {},
-                                        onTapNo: () => Get.back())),
-                              ]):customConatiner(color: greenColor, text: bookings['bookingStatus']),
-                            )],
+                              child: bookings['cancelled'] == 'No'
+                                  ? Column(children: [
+                                      bookings['bookingStatus'] == 'Pending'
+                                          ? customButton(
+                                              color: indigoColor,
+                                              text: 'Confirm',
+                                              onTap: () => alertDialog(
+                                                  context: context,
+                                                  title: bookings['bookingStatus'] == 'Pending' ? 'Cancel booking?':'Booking is already confirmed. Cancel ?',
+                                                  onTapYes: () {
+                                                    _controller.confirmBooking(
+                                                      context: context,
+                                                      adBookedByUid: bookings[
+                                                          'adBookedByUid'],
+                                                      bookingStatus:
+                                                          'Confirmed',
+                                                      apartmentUid: bookings[
+                                                          'apartmentUid'],
+                                                    );
+                                                  },
+                                                  onTapNo: () => Get.back()))
+                                          : customConatiner(
+                                              color: greenColor,
+                                              text: bookings['bookingStatus']),
+                                      verticalSpace,
+                                      customButton(
+                                          color: bgColor,
+                                          text: 'Cancel',
+                                          onTap: () => alertDialog(
+                                              context: context,
+                                              title: 'Cancel booking?',
+                                              onTapYes: () =>
+                                                  _controller.cancelBooking(
+                                                      context: context,
+                                                      cancelled: 'Yes',
+                                                    adBookedByUid: bookings[
+                                                    'adBookedByUid'],
+                                                    apartmentUid: bookings[
+                                                    'apartmentUid'],),
+                                              onTapNo: () => Get.back())),
+                                    ])
+                                  : bookings['cancelled'] == 'Requested'
+                                      ? customButton(
+                                          color: deepBrown,
+                                          text: 'Requested to cancel',
+                                          onTap: () => alertDialog(
+                                              context: context,
+                                              title: 'Cancel booking?',
+                                              onTapYes: () => _controller
+                                                      .cancelBookingFromRequest(
+                                                    context: context,
+                                                    cancelled: 'Yes',
+                                                    adBookedByUid: bookings[
+                                                        'adBookedByUid'],
+                                                    apartmentUid: bookings[
+                                                        'apartmentUid'],
+                                                  ),
+                                              onTapNo: () => Get.back()))
+                                      : customConatiner(
+                                          color: bgColor, text: 'Cancelled'),
+                            )
+                          ],
                         ),
                       ),
                     );

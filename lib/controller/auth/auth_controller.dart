@@ -94,8 +94,7 @@ class AuthController extends GetxController {
         Fluttertoast.showToast(msg: 'The account already exists for $email.');
       }
     } catch (e) {
-      Get.snackbar('Error Occured', 'Please try again',
-          snackPosition: SnackPosition.BOTTOM, duration: Duration(seconds: 2));
+      Fluttertoast.showToast(msg: e.toString(), );
       print(e);
     }
   }

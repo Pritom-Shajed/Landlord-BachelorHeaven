@@ -1,9 +1,11 @@
 import 'package:bachelor_heaven_landlord/constants/constants.dart';
 import 'package:bachelor_heaven_landlord/controller/dashboard/post_controller.dart';
 import 'package:bachelor_heaven_landlord/controller/intial/dashboard_controller.dart';
+import 'package:bachelor_heaven_landlord/controller/profile/profile_controller.dart';
 import 'package:bachelor_heaven_landlord/widgets/custom_Button.dart';
 import 'package:bachelor_heaven_landlord/widgets/custom_textField.dart';
 import 'package:bachelor_heaven_landlord/widgets/textStyles.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -19,6 +21,7 @@ class PostAds extends StatelessWidget {
   TextEditingController _descriptionController = TextEditingController();
   String _currentTime = DateFormat.yMMMMd('en_US').add_jms().format(DateTime.now());
   User? _currentUser = FirebaseAuth.instance.currentUser;
+
 
   final List<String> items = ['Seat', 'Flat', 'Room'];
 
@@ -139,9 +142,10 @@ class PostAds extends StatelessWidget {
                           icon: Icons.description),
                       verticalSpace,
                       customButton(
-
                           text: 'ADD',
-                          onTap: () {
+                          onTap: () async{
+                            QuerySnapshot userData = await FirebaseFirestore.instance.collection('landlords').where('uid', isEqualTo: _currentUser!.uid).get();
+
                             if (_locationController.text.isEmpty) {
                               Fluttertoast.showToast(
                                   msg: 'Enter your location',
@@ -158,6 +162,7 @@ class PostAds extends StatelessWidget {
                               controller.addPost(
                                   context: context,
                                   adOwnerUid: _currentUser!.uid,
+                                  adOwnerPhone: '${userData.docs.single['phoneNumber']}',
                                   time: _currentTime,
                                   title: _titleController.text.trim(),
                                   category: controller.category,

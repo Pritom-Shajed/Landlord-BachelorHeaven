@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Bachelor Heaven Landlord',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey).copyWith(background: whiteColor),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.brown).copyWith(background: whiteColor),
         primarySwatch: Colors.blue,
       ),
       getPages: [

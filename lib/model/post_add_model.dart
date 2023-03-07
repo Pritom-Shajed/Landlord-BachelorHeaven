@@ -1,5 +1,6 @@
 class PostModel {
   String? adOwnerUid;
+  String? adOwnerPhone;
   String? uid;
   String? title;
   String? location;
@@ -11,6 +12,7 @@ class PostModel {
 
   PostModel({
     required this.adOwnerUid,
+    required this.adOwnerPhone,
     required this.uid,
     required this.title,
     required this.location,
@@ -24,6 +26,7 @@ class PostModel {
   Map<String, dynamic> toJson() {
     return {
       'adOwnerUid': adOwnerUid,
+      'adOwnerPhone':adOwnerPhone,
       'uid': uid,
       'title': title,
       'location': location,

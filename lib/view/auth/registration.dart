@@ -164,9 +164,13 @@ class RegScreen extends StatelessWidget {
                               Fluttertoast.showToast(msg: 'Enter you name');
                             } else if (_emailController.text.isEmpty) {
                               Fluttertoast.showToast(msg: 'Enter you email');
+                            } else if(!_emailController.text.contains(RegExp('@'))){
+                              Fluttertoast.showToast(msg: 'Enter a valid email');
                             } else if (_passController.text.isEmpty) {
                               Fluttertoast.showToast(
                                   msg: 'Enter your password');
+                            } else if(_phoneController.text.length < 11){
+                              Fluttertoast.showToast(msg: 'Enter a valid phone number');
                             } else if (_locationController.text.isEmpty) {
                               Fluttertoast.showToast(
                                   msg: 'Enter your city name');

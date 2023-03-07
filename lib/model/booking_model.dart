@@ -11,3 +11,17 @@ class ConfirmBookingModel {
     };
   }
 }
+
+class CancelBookingModel {
+  String cancelled;
+
+  CancelBookingModel({
+    required this.cancelled,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'cancelled': cancelled,
+    };
+  }
+}

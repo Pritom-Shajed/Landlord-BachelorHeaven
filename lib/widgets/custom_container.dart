@@ -15,7 +15,7 @@ Widget customConatiner({required String text,
         blurRadius: 1,
         color: Colors.black45,
       )
-    ], color: color, borderRadius: BorderRadius.circular(6)),
+    ], color: color, borderRadius: BorderRadius.circular(16)),
     child: Text(
       text,
       style: poppinsTextStyle(color: whiteColor, fontWeight: FontWeight.w500),
