@@ -11,7 +11,7 @@ class InitialBinding extends Bindings {
     Get.put(DashboardController());
     Get.put(MyAdsController());
     Get.put(PostController());
-    Get.put(ConfirmBookingController());
+    Get.put(BookingController());
   }
 }
 //

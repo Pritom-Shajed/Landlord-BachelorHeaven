@@ -1,6 +1,6 @@
 import 'package:bachelor_heaven_landlord/controller/intial/dashboard_controller.dart';
 import 'package:bachelor_heaven_landlord/view/dashboard/myAds.dart';
-import 'package:bachelor_heaven_landlord/view/dashboard/myBooking.dart';
+import 'package:bachelor_heaven_landlord/view/dashboard/bookings/myBooking.dart';
 import 'package:bachelor_heaven_landlord/view/dashboard/myProfile.dart';
 import 'package:bachelor_heaven_landlord/view/dashboard/postAds.dart';
 import 'package:bachelor_heaven_landlord/widgets/alert_dialog.dart';

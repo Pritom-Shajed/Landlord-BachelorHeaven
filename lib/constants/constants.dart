@@ -32,3 +32,5 @@ const horizontalSpace = SizedBox(
 const LoadingIndicatorWhite = CircularProgressIndicator(color: whiteColor,);
 
 enum Selected { flat, room, seat }
+
+enum Booking { confirm, pending, cancel }
