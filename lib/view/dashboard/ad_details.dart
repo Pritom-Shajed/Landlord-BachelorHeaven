@@ -7,6 +7,7 @@ import 'package:bachelor_heaven_landlord/widgets/shimmerEffect.dart';
 import 'package:bachelor_heaven_landlord/widgets/textStyles.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -17,6 +18,7 @@ class AdDetails extends StatelessWidget {
   PostController _controller = Get.find();
   String uid;
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  User? _currentUser = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +119,7 @@ class AdDetails extends StatelessWidget {
                                                   onTapYes: () async {
                                                     await _controller
                                                         .deletePost(
+                                                      currentUserUid: _currentUser!.uid,
                                                       uid: apartment['uid'],
                                                       categoryName:
                                                           apartment['category'],

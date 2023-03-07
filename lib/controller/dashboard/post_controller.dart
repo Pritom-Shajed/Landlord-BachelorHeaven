@@ -131,7 +131,7 @@ class PostController extends GetxController {
     }
   }
 
-  deletePost({required String uid, required String categoryName}) async {
+  deletePost({required String uid, required String categoryName,required String currentUserUid,}) async {
     final CollectionReference ref =
         await FirebaseFirestore.instance.collection('Ads-All');
 
@@ -141,14 +141,14 @@ class PostController extends GetxController {
       element.reference.delete();
     });
 
-    deletePersonalPost(categoryName: categoryName, uid: uid);
+    deletePersonalPost(categoryName: categoryName, uid: uid, currentUserUid: currentUserUid);
   }
 
   deletePersonalPost(
-      {required String categoryName, required String uid}) async {
+      {required String categoryName, required String uid, required String currentUserUid,}) async {
     final CollectionReference ref = await FirebaseFirestore.instance
         .collection('Ads-Individual')
-        .doc('landlord_${_currentUser!.uid}')
+        .doc('landlord_$currentUserUid')
         .collection(categoryName);
     QuerySnapshot snapshot = await ref.where('uid', isEqualTo: uid).get();
 
