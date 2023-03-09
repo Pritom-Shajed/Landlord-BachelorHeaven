@@ -9,6 +9,8 @@ class PostModel {
   String? description;
   String? pictureUrl;
   String? postDate;
+  String? latitude;
+  String? longitude;
 
   PostModel({
     required this.adOwnerUid,
@@ -21,6 +23,9 @@ class PostModel {
     required this.description,
     required this.pictureUrl,
     required this.postDate,
+    required this.latitude,
+    required this.longitude,
+
   });
 
   Map<String, dynamic> toJson() {
@@ -35,6 +40,8 @@ class PostModel {
       'description': description,
       'pictureUrl': pictureUrl,
       'postDate': postDate,
+      'latitude': latitude,
+      'longitude': longitude
     };
   }
 }

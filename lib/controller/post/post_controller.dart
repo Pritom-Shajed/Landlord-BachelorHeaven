@@ -71,6 +71,8 @@ class PostController extends GetxController {
 
   addPost(
       {required String adOwnerUid,
+        required String latitude,
+        required String longitude,
         required String adOwnerPhone,
         required String currentUserUid,
         required String title,
@@ -103,6 +105,8 @@ class PostController extends GetxController {
       PostModel post = PostModel(
           adOwnerUid: adOwnerUid,
           adOwnerPhone: adOwnerPhone,
+          latitude: latitude,
+          longitude: longitude,
           uid: Uuid().v1(),
           title: title,
           location: location,

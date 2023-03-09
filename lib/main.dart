@@ -6,7 +6,6 @@ import 'package:bachelor_heaven_landlord/view/auth/registration.dart';
 import 'package:bachelor_heaven_landlord/view/dashboard/myProfile.dart';
 import 'package:bachelor_heaven_landlord/view/intial/dashboard.dart';
 import 'package:bachelor_heaven_landlord/view/intial/splashScreen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';

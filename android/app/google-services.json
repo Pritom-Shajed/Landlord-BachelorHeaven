@@ -1,21 +1,20 @@
 {
   "project_info": {
-    "project_number": "547074217296",
-    "firebase_url": "https://bachelor-heaven-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "bachelor-heaven",
-    "storage_bucket": "bachelor-heaven.appspot.com"
+    "project_number": "298526441073",
+    "project_id": "mythical-range-380018",
+    "storage_bucket": "mythical-range-380018.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:547074217296:android:287587fc28f25836bac855",
+        "mobilesdk_app_id": "1:298526441073:android:e5f0719251086283eae5d0",
         "android_client_info": {
           "package_name": "com.example.bachelor_heaven"
         }
       },
       "oauth_client": [
         {
-          "client_id": "547074217296-eb8l7tgmlbcufl173nbg9i87h6kdralh.apps.googleusercontent.com",
+          "client_id": "298526441073-4uh8kfn1kigfd701idgddrfbqmotv0p5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.bachelor_heaven",
@@ -23,20 +22,20 @@
           }
         },
         {
-          "client_id": "547074217296-cguejuag721f6sgbo241k043q0ho58op.apps.googleusercontent.com",
+          "client_id": "298526441073-1lgio80in81ks12da2m9dscun8ts3sdt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBbrTMDL0uu1jTN1wo12TLFGeRmXQClJs0"
+          "current_key": "AIzaSyAQFzaiA5ypEqB6CTNQ_-Lrmj0WQED2n2M"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "547074217296-cguejuag721f6sgbo241k043q0ho58op.apps.googleusercontent.com",
+              "client_id": "298526441073-1lgio80in81ks12da2m9dscun8ts3sdt.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -45,14 +44,14 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:547074217296:android:d6417dfa1546efc1bac855",
+        "mobilesdk_app_id": "1:298526441073:android:501614733e7e4098eae5d0",
         "android_client_info": {
           "package_name": "com.landlord.bachelor_heaven_landlord"
         }
       },
       "oauth_client": [
         {
-          "client_id": "547074217296-260bmn2vuh63sufdog09ncq7q44hpms8.apps.googleusercontent.com",
+          "client_id": "298526441073-3qc550d2pgtdtkvsh7a03jdvcopie5p0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.landlord.bachelor_heaven_landlord",
@@ -60,20 +59,20 @@
           }
         },
         {
-          "client_id": "547074217296-cguejuag721f6sgbo241k043q0ho58op.apps.googleusercontent.com",
+          "client_id": "298526441073-1lgio80in81ks12da2m9dscun8ts3sdt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBbrTMDL0uu1jTN1wo12TLFGeRmXQClJs0"
+          "current_key": "AIzaSyAQFzaiA5ypEqB6CTNQ_-Lrmj0WQED2n2M"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "547074217296-cguejuag721f6sgbo241k043q0ho58op.apps.googleusercontent.com",
+              "client_id": "298526441073-1lgio80in81ks12da2m9dscun8ts3sdt.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

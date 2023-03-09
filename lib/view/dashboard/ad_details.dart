@@ -1,5 +1,5 @@
 import 'package:bachelor_heaven_landlord/constants/constants.dart';
-import 'package:bachelor_heaven_landlord/controller/dashboard/post_controller.dart';
+import 'package:bachelor_heaven_landlord/controller/post/post_controller.dart';
 import 'package:bachelor_heaven_landlord/widgets/alert_dialog.dart';
 import 'package:bachelor_heaven_landlord/widgets/custom_Button.dart';
 import 'package:bachelor_heaven_landlord/widgets/expanstion_tile.dart';

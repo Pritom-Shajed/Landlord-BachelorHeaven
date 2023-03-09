@@ -26,7 +26,11 @@ dependencies:
   lottie: ^2.2.0
   image_picker: ^0.8.6+4
   fluttertoast: ^8.2.1
-  
+  google_maps_flutter: ^2.2.5
+  geolocator: ^9.0.2
+  uuid: ^3.0.7
+  http: ^0.13.5
+  geocoding: ^2.0.5
 
 
 dev_dependencies:
