@@ -10,16 +10,25 @@ PostController postController = Get.find();
 StepperController stepperController = Get.find();
 LocationController controller = Get.put(LocationController());
 final List<String> items = ['Seat', 'Flat', 'Room'];
+final List<String> divisions = [
+  'Dhaka',
+  'Chattogram',
+  'Sylhet',
+  'Khulna',
+  'Rajshahi',
+  'Rangpur',
+  'Mymensingh',
+  'Barishal',
+];
 
 List<Step> stepList(
         {required String locationTitle,
-          required TextEditingController titleController,
-        required TextEditingController locationController,
+        required TextEditingController titleController,
+        required TextEditingController addressController,
         required TextEditingController priceController,
         required TextEditingController descriptionController,
         required BuildContext context}) =>
     [
-
       Step(
         isActive: stepperController.currentStep.value <= 0,
         title: Text('Initial'),
@@ -34,9 +43,34 @@ List<Step> stepList(
                 controller: priceController,
                 hintText: 'Price',
                 icon: Icons.price_change),
+            Card(
+              elevation: 1,
+              child: DropdownButtonFormField(
+                value: postController.division,
+                onChanged: postController.pickDivision,
+                items: divisions
+                    .map((valueItem) => DropdownMenuItem(
+                        value: valueItem,
+                        child: Text(
+                          valueItem,
+                        )))
+                    .toList(),
+                icon: Icon(Icons.arrow_drop_down_circle),
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(8),
+                  prefixIcon: Icon(
+                    Icons.location_city,
+                    color: blackColor,
+                  ),
+                  labelText: 'Division',
+                  labelStyle: TextStyle(color: Colors.grey.shade700),
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
             customTextField(
-                controller: locationController,
-                hintText: 'Location',
+                controller: addressController,
+                hintText: 'Address',
                 icon: Icons.location_pin),
           ],
         ),

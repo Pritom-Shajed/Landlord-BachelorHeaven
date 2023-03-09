@@ -6,21 +6,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class PostAds extends StatefulWidget {
+class PostAds extends StatelessWidget {
   PostAds({Key? key}) : super(key: key);
 
-  @override
-  State<PostAds> createState() => _PostAdsState();
-}
-
-class _PostAdsState extends State<PostAds> {
   TextEditingController titleController = TextEditingController();
 
-  TextEditingController locationController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
 
   TextEditingController priceController = TextEditingController();
 
@@ -33,14 +27,7 @@ class _PostAdsState extends State<PostAds> {
   String _currentTime =
   DateFormat.yMMMMd('en_US').add_jms().format(DateTime.now());
 
-  List<Location>? locations;
-  getLatLon(String input)async{
-    locations =  await locationFromAddress(input);
-    setState(() {
-
-    });
-  }
-
+  // List<Location>? locations;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<StepperController>(builder: (controller) {
@@ -53,7 +40,7 @@ class _PostAdsState extends State<PostAds> {
                 steps: stepList(
                     locationTitle: 'Hi',
                     titleController: titleController,
-                    locationController: locationController,
+                    addressController: addressController,
                     priceController: priceController,
                     descriptionController: descriptionController,
                     context: context),
@@ -65,12 +52,14 @@ class _PostAdsState extends State<PostAds> {
                     } else if (priceController.text.isEmpty) {
                       Fluttertoast.showToast(
                           msg: 'Enter the price', toastLength: Toast.LENGTH_SHORT);
-                    } else if (locationController.text.isEmpty) {
+                    } else if (addressController.text.isEmpty) {
                       Fluttertoast.showToast(
                           msg: 'Enter your location',
                           toastLength: Toast.LENGTH_SHORT);
                     } else {
-                      getLatLon(locationController.text.toString());
+                      await controller.getLatLon('${addressController.text}, ${_postController.division}');
+                      print(controller.locations.last.latitude);
+                      print(controller.locations.last.longitude);
                       controller.stepIncrement();
                     }
                   } else if (controller.currentStep == 1) {
@@ -89,8 +78,8 @@ class _PostAdsState extends State<PostAds> {
                           .get();
                       _postController.addPost(
                           context: context,
-                          latitude: '${locations!.last.latitude}',
-                          longitude: '${locations!.last.longitude}',
+                          latitude: '${controller.locations.last.latitude}',
+                          longitude: '${controller.locations.last.longitude}',
                           currentUserUid: _currentUser!.uid,
                           adOwnerUid: _currentUser!.uid,
                           adOwnerPhone: '${userData.docs.single['phoneNumber']}',
@@ -98,7 +87,8 @@ class _PostAdsState extends State<PostAds> {
                           title: titleController.text.trim(),
                           category: _postController.category,
                           description: descriptionController.text.trim(),
-                          location: locationController.text.trim(),
+                          address: addressController.text.trim(),
+                          division: _postController.division,
                           price: priceController.text.trim());
                     }
                   }

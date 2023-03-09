@@ -3,7 +3,8 @@ class PostModel {
   String? adOwnerPhone;
   String? uid;
   String? title;
-  String? location;
+  String? address;
+  String? division;
   String? price;
   String? category;
   String? description;
@@ -17,7 +18,8 @@ class PostModel {
     required this.adOwnerPhone,
     required this.uid,
     required this.title,
-    required this.location,
+    required this.address,
+    required this.division,
     required this.price,
     required this.category,
     required this.description,
@@ -34,7 +36,8 @@ class PostModel {
       'adOwnerPhone':adOwnerPhone,
       'uid': uid,
       'title': title,
-      'location': location,
+      'location': address,
+      'division': division,
       'price': price,
       'category': category,
       'description': description,

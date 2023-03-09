@@ -6,6 +6,7 @@ String currentDate = DateFormat.yMMMd().format(DateTime.now());
 
 //Colors
 const Color bgColor = Color(0xff363637);
+final Color shadowColor = Color(0xFFAFAFAF).withOpacity(0.2);
 final Color greenColor = Colors.green.shade700;
 const Color deepBrown = Color(0xff5C4033);
 const Color indigoColor = Colors.indigo;

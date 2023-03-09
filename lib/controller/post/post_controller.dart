@@ -9,17 +9,21 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 class PostController extends GetxController {
   DashboardController _controller = Get.find();
   String category = 'Seat';
+  String division = 'Dhaka';
   File? addImage;
   User? _currentUser = FirebaseAuth.instance.currentUser;
 
   void pickCategory(String? value) {
     category = value!;
+    update();
+  }
+  void pickDivision(String? value) {
+    division = value!;
     update();
   }
 
@@ -40,7 +44,7 @@ class PostController extends GetxController {
             children: [
               SimpleDialogOption(
                 onPressed: () {
-                  pickAddImage(ImageSource.camera);
+                    pickAddImage(ImageSource.camera);
                   Get.back();
                 },
                 child: Row(
@@ -53,7 +57,7 @@ class PostController extends GetxController {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  pickAddImage(ImageSource.gallery);
+                   pickAddImage(ImageSource.gallery);
                   Get.back();
                 },
                 child: Row(
@@ -77,7 +81,8 @@ class PostController extends GetxController {
         required String currentUserUid,
         required String title,
       required String category,
-      required String location,
+      required String address,
+        required String division,
       required String price,
       required String description,
         required String time,
@@ -109,7 +114,8 @@ class PostController extends GetxController {
           longitude: longitude,
           uid: Uuid().v1(),
           title: title,
-          location: location,
+          address: address,
+          division: division,
           price: price,
           category: category,
           description: description,
