@@ -1,6 +1,8 @@
 import 'package:bachelor_heaven_landlord/constants/constants.dart';
 import 'package:bachelor_heaven_landlord/controller/dashboard/category_controller.dart';
+import 'package:bachelor_heaven_landlord/controller/dashboard/rating_controller.dart';
 import 'package:bachelor_heaven_landlord/view/dashboard/ad_details.dart';
+import 'package:bachelor_heaven_landlord/widgets/bookingCard.dart';
 import 'package:bachelor_heaven_landlord/widgets/shimmerEffect.dart';
 import 'package:bachelor_heaven_landlord/widgets/textStyles.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -15,6 +17,7 @@ class MyAds extends StatelessWidget {
   TextEditingController searchTextController = TextEditingController();
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
   User? _currentUser = FirebaseAuth.instance.currentUser;
+  RatingController _ratingController = Get.put(RatingController());
 
   @override
   Widget build(BuildContext context) {
@@ -110,64 +113,15 @@ class MyAds extends StatelessWidget {
                         itemBuilder: (_, index) {
                           Map<String, dynamic> adds =
                           snapshot.data!.docs[index].data();
-                          return InkWell(
-                            onTap: ()=>Get.to(()=>AdDetails(uid: adds['uid'])),
-                            child: CachedNetworkImage(
-                              imageUrl: "${adds['pictureUrl']}",
-                              imageBuilder: (context, imageProvider) => Container(
-                                margin: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                      image: imageProvider, fit: BoxFit.cover),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.all(5),
-                                      padding: EdgeInsets.all(5),
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(8)),
-                                      child: Text(
-                                        adds['category'],
-                                        style: poppinsTextStyle(size: 10),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.all(5),
-                                      padding: EdgeInsets.all(5),
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(8)),
-                                      child: Text(
-                                        adds['location'],
-                                        style: poppinsTextStyle(size: 10),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.all(5),
-                                      padding: EdgeInsets.all(5),
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(8)),
-                                      child: Text(
-                                        adds['price'],
-                                        style: poppinsTextStyle(size: 10),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              placeholder: (context, url) => Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: ShimmerEffect(height: 240, width: 200)),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
-                            ),
-                          );
+                          _ratingController.ratingChange(ratingActual: 4);
+                          return BookingCard(
+                              onTap: () {
+                                Get.to(() => ApartmentDetails(uid: adds['uid']));
+                              },
+                              rating: 4,
+                              bookingTitle: adds['title'],
+                              bookingLocation: adds['location'],
+                              imgUrl: adds['pictureUrl']);
                         });
                   } else if (snapshot.hasError) {
                     return Center(

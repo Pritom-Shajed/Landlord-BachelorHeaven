@@ -30,7 +30,8 @@ List<Step> stepList(
         required BuildContext context}) =>
     [
       Step(
-        isActive: stepperController.currentStep.value <= 0,
+        state: stepperController.currentStep == 0 ? StepState.complete: StepState.disabled,
+        isActive: stepperController.currentStep == 0,
         title: Text('Initial'),
         content: Column(
           children: [
@@ -76,7 +77,8 @@ List<Step> stepList(
         ),
       ),
       Step(
-          isActive: stepperController.currentStep.value <= 01,
+        state: stepperController.currentStep == 1 ? StepState.complete: StepState.disabled,
+          isActive: stepperController.currentStep == 1,
           title: Text('Description'),
           content: Column(
             children: [
@@ -113,14 +115,14 @@ List<Step> stepList(
             ],
           )),
       Step(
-        isActive: stepperController.currentStep.value <= 2,
+state: stepperController.currentStep == 2 ? StepState.complete: StepState.disabled,
+        isActive: stepperController.currentStep == 2,
         title: Text('Photo'),
         content: Column(
           children: [
             InkWell(
               onTap: () {
                 postController.pickCamOrGallery(context);
-                // controller.pickAddImage(ImageSource.gallery);
               },
               child: Card(
                 elevation: 1,
@@ -130,7 +132,7 @@ List<Step> stepList(
                     children: [
                       Icon(Icons.photo_rounded),
                       horizontalSpace,
-                      postController.addImage == null
+                      postController.myFile.path == null
                           ? Text(
                               'Add Photo',
                               style: TextStyle(color: Colors.grey.shade700),
@@ -142,7 +144,7 @@ List<Step> stepList(
                 ),
               ),
             ),
-            postController.addImage == null
+            postController.myFile.path == null
                 ? Container()
                 : Container(
                     height: 200,
@@ -151,7 +153,7 @@ List<Step> stepList(
                         borderRadius: BorderRadius.circular(12),
                         image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: FileImage(postController.addImage!))),
+                            image: FileImage(postController.myFile.image!))),
                   ),
           ],
         ),

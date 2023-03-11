@@ -3,16 +3,22 @@ import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 
 class StepperController extends GetxController {
-  RxInt currentStep = 0.obs;
+  final _currentStep = 0.obs;
   RxList<Location> locations = <Location>[].obs;
 
 
+   get currentStep => _currentStep.value;
+
+  set currentStep(value) {
+    _currentStep.value = value;
+  }
+
   stepIncrement() {
-    currentStep.value = currentStep.value + 1;
+    currentStep = currentStep + 1;
   }
 
   stepDecrement() {
-    currentStep.value = currentStep.value - 1;
+    currentStep = currentStep - 1;
   }
 
   getLatLon(String input)async{

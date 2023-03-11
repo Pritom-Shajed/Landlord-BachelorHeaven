@@ -27,7 +27,6 @@ class PostModel {
     required this.postDate,
     required this.latitude,
     required this.longitude,
-
   });
 
   Map<String, dynamic> toJson() {
@@ -37,6 +36,7 @@ class PostModel {
       'uid': uid,
       'title': title,
       'location': address,
+      'locationSearch': address!.toLowerCase(),
       'division': division,
       'price': price,
       'category': category,

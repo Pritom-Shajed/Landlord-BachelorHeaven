@@ -65,7 +65,9 @@ class BookingController extends GetxController {
     required String persons,
     required String title,
     required String pictureUrl,
-
+    required String price,
+    required String address,
+    required String category,
   }) async {
     showDialog(
         context: context,
@@ -85,7 +87,10 @@ class BookingController extends GetxController {
         adBookedByUid: adBookedByUid,
         checkIn: checkIn,
         checkOut: checkOut,
+        address: address,
         persons: persons,
+        category: category,
+        price: price,
         apartmentUid: apartmentUid,
         title: title,
         pictureUrl: pictureUrl);

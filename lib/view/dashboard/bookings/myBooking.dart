@@ -371,10 +371,12 @@ class MyBookings extends StatelessWidget {
                                                         context: context,
                                                         title: 'Cancel booking?',
                                                         onTapYes: () =>
-                                                            controller
-                                                                .cancelBooking(
+                                                            controller.cancelBooking(
                                                               context: context,
                                                               cancelled: 'Yes',
+                                                              price: bookings['price'],
+                                                              category: bookings['category'],
+                                                              address: bookings['address'],
                                                               bookingUid: bookings['bookingUid'],
                                                               adBookedByUid:
                                                                   bookings[

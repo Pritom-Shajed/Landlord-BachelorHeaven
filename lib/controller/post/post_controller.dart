@@ -1,5 +1,6 @@
 import 'package:bachelor_heaven_landlord/constants/constants.dart';
 import 'package:bachelor_heaven_landlord/controller/intial/dashboard_controller.dart';
+import 'package:bachelor_heaven_landlord/model/file_mdoel.dart';
 import 'package:bachelor_heaven_landlord/model/post_add_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,23 +16,29 @@ class PostController extends GetxController {
   DashboardController _controller = Get.find();
   String category = 'Seat';
   String division = 'Dhaka';
-  File? addImage;
-  User? _currentUser = FirebaseAuth.instance.currentUser;
+  final _myFile = MyFile().obs;
+
+  get myFile => _myFile.value;
+
+  set myFile(value) {
+    _myFile.value = value;
+  }
+
 
   void pickCategory(String? value) {
     category = value!;
     update();
   }
+
   void pickDivision(String? value) {
     division = value!;
     update();
   }
 
-
   pickAddImage(ImageSource src) async {
     XFile? xfile = await ImagePicker().pickImage(source: src);
     if (xfile != null) {
-      addImage = File(xfile.path);
+      myFile = MyFile(path: xfile.path, image: File(xfile.path));
       update();
     }
   }
@@ -44,7 +51,7 @@ class PostController extends GetxController {
             children: [
               SimpleDialogOption(
                 onPressed: () {
-                    pickAddImage(ImageSource.camera);
+                  pickAddImage(ImageSource.camera);
                   Get.back();
                 },
                 child: Row(
@@ -57,7 +64,7 @@ class PostController extends GetxController {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                   pickAddImage(ImageSource.gallery);
+                  pickAddImage(ImageSource.gallery);
                   Get.back();
                 },
                 child: Row(
@@ -75,19 +82,19 @@ class PostController extends GetxController {
 
   addPost(
       {required String adOwnerUid,
-        required String latitude,
-        required String longitude,
-        required String adOwnerPhone,
-        required String currentUserUid,
-        required String title,
+      required String latitude,
+      required String longitude,
+      required String adOwnerPhone,
+      required String currentUserUid,
+      required String title,
       required String category,
       required String address,
-        required String division,
+      required String division,
       required String price,
       required String description,
-        required String time,
+      required String time,
       required BuildContext context}) async {
-    if (addImage != null) {
+    if (myFile.path != null) {
       showDialog(
           barrierDismissible: false,
           context: context,
@@ -104,7 +111,7 @@ class PostController extends GetxController {
           .child(category)
           .child(time);
 
-      TaskSnapshot task = await ref.putFile(addImage!);
+      TaskSnapshot task = await ref.putFile(myFile.image!);
       String downloadUrl = await task.ref.getDownloadURL();
 
       PostModel post = PostModel(
@@ -141,7 +148,11 @@ class PostController extends GetxController {
     }
   }
 
-  deletePost({required String uid, required String categoryName,required String currentUserUid,}) async {
+  deletePost({
+    required String uid,
+    required String categoryName,
+    required String currentUserUid,
+  }) async {
     final CollectionReference ref =
         await FirebaseFirestore.instance.collection('Ads-All');
 
@@ -151,11 +162,15 @@ class PostController extends GetxController {
       element.reference.delete();
     });
 
-    deletePersonalPost(categoryName: categoryName, uid: uid, currentUserUid: currentUserUid);
+    deletePersonalPost(
+        categoryName: categoryName, uid: uid, currentUserUid: currentUserUid);
   }
 
-  deletePersonalPost(
-      {required String categoryName, required String uid, required String currentUserUid,}) async {
+  deletePersonalPost({
+    required String categoryName,
+    required String uid,
+    required String currentUserUid,
+  }) async {
     final CollectionReference ref = await FirebaseFirestore.instance
         .collection('Ads-Individual')
         .doc('landlord_$currentUserUid')

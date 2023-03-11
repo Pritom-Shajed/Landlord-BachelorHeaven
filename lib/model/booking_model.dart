@@ -37,6 +37,9 @@ class CancelBookingModelIndividual {
   String apartmentUid;
   String title;
   String pictureUrl;
+  String price;
+  String address;
+  String category;
 
   CancelBookingModelIndividual({
     required this.bookingStatus,
@@ -49,7 +52,11 @@ class CancelBookingModelIndividual {
     required this.apartmentUid,
     required this.title,
     required this.pictureUrl,
+    required this.price,
+    required this.category,
+    required this.address
   });
+
 
   Map<String, dynamic> toJson() {
     return {
@@ -62,6 +69,9 @@ class CancelBookingModelIndividual {
       'apartmentUid': apartmentUid,
       'title': title,
       'pictureUrl': pictureUrl,
+      'address': address,
+      'category': category,
+      'price': price,
     };
   }
 }
