@@ -6,13 +6,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Widget BookingCard(
+Widget apartmentCard(
     {required String bookingTitle,
     required String bookingLocation,
     required String imgUrl,
-    required int rating,
     required VoidCallback onTap}) {
-  RatingController _controller = Get.find();
   return Card(
       margin: EdgeInsets.all(10),
       clipBehavior: Clip.antiAlias,
@@ -35,8 +33,6 @@ Widget BookingCard(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _controller.ratingTotal(
-                    iconSize: 25, textColor: whiteColor, textSize: 20),
                 Expanded(
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,

@@ -2,7 +2,7 @@ import 'package:bachelor_heaven_landlord/constants/constants.dart';
 import 'package:bachelor_heaven_landlord/controller/dashboard/category_controller.dart';
 import 'package:bachelor_heaven_landlord/controller/dashboard/rating_controller.dart';
 import 'package:bachelor_heaven_landlord/view/dashboard/ad_details.dart';
-import 'package:bachelor_heaven_landlord/widgets/bookingCard.dart';
+import 'package:bachelor_heaven_landlord/widgets/apartmentCard.dart';
 import 'package:bachelor_heaven_landlord/widgets/shimmerEffect.dart';
 import 'package:bachelor_heaven_landlord/widgets/textStyles.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -114,11 +114,10 @@ class MyAds extends StatelessWidget {
                           Map<String, dynamic> adds =
                           snapshot.data!.docs[index].data();
                           _ratingController.ratingChange(ratingActual: 4);
-                          return BookingCard(
+                          return apartmentCard(
                               onTap: () {
                                 Get.to(() => ApartmentDetails(uid: adds['uid']));
                               },
-                              rating: 4,
                               bookingTitle: adds['title'],
                               bookingLocation: adds['location'],
                               imgUrl: adds['pictureUrl']);

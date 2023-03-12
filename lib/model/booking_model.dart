@@ -34,7 +34,6 @@ class CancelBookingModelIndividual {
   String checkOut;
   String persons;
   String adBookedByUid;
-  String apartmentUid;
   String title;
   String pictureUrl;
   String price;
@@ -49,12 +48,11 @@ class CancelBookingModelIndividual {
     required this.checkIn,
     required this.checkOut,
     required this.persons,
-    required this.apartmentUid,
     required this.title,
     required this.pictureUrl,
     required this.price,
     required this.category,
-    required this.address
+    required this.address,
   });
 
 
@@ -66,7 +64,7 @@ class CancelBookingModelIndividual {
       'checkOut': checkOut,
       'persons': persons,
       'adBookedByUid': adBookedByUid,
-      'apartmentUid': apartmentUid,
+      'bookingUid': bookingUid,
       'title': title,
       'pictureUrl': pictureUrl,
       'address': address,

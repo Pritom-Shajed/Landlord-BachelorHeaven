@@ -56,7 +56,6 @@ class BookingController extends GetxController {
     required BuildContext context,
     required String bookingUid,
     required String cancelled,
-    required String apartmentUid,
     required String adBookedByUid,
     required String bookingStatus,
     required String adOwnerUid,
@@ -91,7 +90,6 @@ class BookingController extends GetxController {
         persons: persons,
         category: category,
         price: price,
-        apartmentUid: apartmentUid,
         title: title,
         pictureUrl: pictureUrl);
 

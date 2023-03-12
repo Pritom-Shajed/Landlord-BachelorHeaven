@@ -1,3 +1,4 @@
+import 'package:bachelor_heaven_landlord/constants/constants.dart';
 import 'package:bachelor_heaven_landlord/controller/intial/dashboard_controller.dart';
 import 'package:bachelor_heaven_landlord/view/dashboard/myAds.dart';
 import 'package:bachelor_heaven_landlord/view/dashboard/bookings/myBooking.dart';
@@ -38,9 +39,17 @@ class Dashboard extends StatelessWidget {
           appBar: AppBar(
             elevation: 0,
             actions: [
-              IconButton(
-                  onPressed: () =>Get.toNamed('/myProfile'),
-                  icon: Icon(Icons.account_circle))
+              InkWell(
+                onTap: ()=>Get.toNamed('/myProfile'),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 14.0),
+                  child: CircleAvatar(
+                    radius: 13,
+                    backgroundColor: lightGreyColor,
+                    backgroundImage: NetworkImage(_currentUser!.photoURL!),
+                  ),
+                ),
+              )
             ],
           ),
           bottomNavigationBar: Container(

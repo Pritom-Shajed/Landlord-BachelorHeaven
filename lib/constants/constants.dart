@@ -23,7 +23,7 @@ const verticalSpace = SizedBox(
   height: 15,
 );
 const verticalSpaceSmall = SizedBox(
-  height: 15,
+  height: 10,
 );
 
 const horizontalSpace = SizedBox(
