@@ -186,7 +186,95 @@ class ApartmentDetails extends StatelessWidget {
                                         Text('${apartment['description']}'),
                                       ]),
                                   expansionTile(title: 'Reviews', children: [
-                                    Text('Reviews'),
+                                    Container(
+                                      child: FutureBuilder(
+                                          future: _firestore
+                                              .collection("Ratings")
+                                              .where('apartmentUid',
+                                              isEqualTo: apartment['uid'])
+                                              .get(),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.connectionState ==
+                                                ConnectionState.done) {
+                                              if (snapshot.hasData) {
+                                                return ListView.separated(
+                                                    separatorBuilder:
+                                                        (context, index) {
+                                                      return Divider(
+                                                        color: shadowColor,
+                                                      );
+                                                    },
+                                                    shrinkWrap: true,
+                                                    itemCount: snapshot
+                                                        .data!.docs.length,
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      Map<String, dynamic>
+                                                      reviews = snapshot
+                                                          .data!.docs[index]
+                                                          .data();
+                                                      return Row(
+                                                        mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                        children: [
+                                                          Column(
+                                                            crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                            children: [
+                                                              Text(
+                                                                reviews[
+                                                                'ratedBy'],
+                                                                style:
+                                                                poppinsTextStyle(
+                                                                  color:
+                                                                  greyColor,
+                                                                ),
+                                                              ),
+                                                              Text(
+                                                                reviews[
+                                                                'comments'],
+                                                                style: poppinsTextStyle(
+                                                                    color:
+                                                                    blackColor,
+                                                                    size: 14),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              Icon(
+                                                                Icons.star,
+                                                                color:
+                                                                amberColor,
+                                                              ),
+                                                              Text(
+                                                                  '${reviews['rating']}')
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      );
+                                                    });
+                                              } else if (snapshot.hasError) {
+                                                return Center(
+                                                  child: Text('Error Occured'),
+                                                );
+                                              } else {
+                                                return Center(
+                                                  child: Text(
+                                                      'Something went wrong'),
+                                                );
+                                              }
+                                            } else {
+                                              return Center(
+                                                  child:
+                                                  CircularProgressIndicator(
+                                                    color: blackColor,
+                                                  ));
+                                            }
+                                          }),
+                                    )
                                   ]),
                                   verticalSpace,
                                   Row(
