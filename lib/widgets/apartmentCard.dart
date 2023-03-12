@@ -10,6 +10,7 @@ Widget apartmentCard(
     {required String bookingTitle,
     required String bookingLocation,
     required String imgUrl,
+      required String price,
     required VoidCallback onTap}) {
   return Card(
       margin: EdgeInsets.all(10),
@@ -33,6 +34,14 @@ Widget apartmentCard(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: deepBrown.withOpacity(0.9),
+                  ),
+                  child: Text('৳$price', style: poppinsTextStyle(color: whiteColor, size: 12)),
+                ),
                 Expanded(
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,

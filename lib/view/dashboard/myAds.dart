@@ -109,7 +109,7 @@ class MyAds extends StatelessWidget {
                         scrollDirection: Axis.vertical,
                         itemCount: snapshot.data!.docs.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, childAspectRatio: 0.8),
+                            crossAxisCount: 2, childAspectRatio: 0.7),
                         itemBuilder: (_, index) {
                           Map<String, dynamic> adds =
                           snapshot.data!.docs[index].data();
@@ -120,7 +120,8 @@ class MyAds extends StatelessWidget {
                               },
                               bookingTitle: adds['title'],
                               bookingLocation: adds['location'],
-                              imgUrl: adds['pictureUrl']);
+                              imgUrl: adds['pictureUrl'],
+                              price: adds['price']);
                         });
                   } else if (snapshot.hasError) {
                     return Center(

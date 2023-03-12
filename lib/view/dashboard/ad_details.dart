@@ -1,5 +1,6 @@
 import 'package:bachelor_heaven_landlord/constants/constants.dart';
 import 'package:bachelor_heaven_landlord/controller/post/post_controller.dart';
+import 'package:bachelor_heaven_landlord/view/dashboard/map_view.dart';
 import 'package:bachelor_heaven_landlord/widgets/alert_dialog.dart';
 import 'package:bachelor_heaven_landlord/widgets/custom_Button.dart';
 import 'package:bachelor_heaven_landlord/widgets/expanstion_tile.dart';
@@ -114,30 +115,11 @@ class ApartmentDetails extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        apartment['title'],
-                                        style: poppinsTextStyle(
-                                            size: 32,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.star,
-                                            size: 24,
-                                            color: amberColor,
-                                          ),
-                                          Text(
-                                            '4.0',
-                                            style: poppinsTextStyle(size: 17),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                  Text(
+                                    apartment['title'],
+                                    style: poppinsTextStyle(
+                                        size: 32,
+                                        fontWeight: FontWeight.w600),
                                   ),
                                   Text(
                                     'Posted on: ${apartment['postDate']}',
@@ -145,15 +127,31 @@ class ApartmentDetails extends StatelessWidget {
                                   ),
                                   verticalSpaceSmall,
                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Icon(
                                         Icons.location_pin,
                                         size: 22,
                                         color: greyColor,
                                       ),
-                                      Text(
-                                        '${apartment['location']}',
-                                        style: poppinsTextStyle(size: 20),
+                                      Expanded(
+                                        flex: 4,
+                                        child: Text(
+                                          '${apartment['location']}',
+                                          style: poppinsTextStyle(size: 20),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: TextButton(
+                                          onPressed: () => Get.to(() =>
+                                              ApartmentMapView(
+                                                  lat:
+                                                  apartment['latitude'],
+                                                  lon: apartment[
+                                                  'longitude'],
+                                                  title:
+                                                  apartment['title'])), child: Text('View', style: poppinsTextStyle(color: blueColor),),),
                                       ),
                                     ],
                                   ),
